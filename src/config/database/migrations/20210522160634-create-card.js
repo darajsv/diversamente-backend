@@ -7,22 +7,24 @@ module.exports = {
         allowNull:false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER
       }, 
       name: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       description: {
         type: Sequelize.TEXT
       },
-      imageType: {
+      image: {
         type: Sequelize.STRING
       },
-      imageName: {
-        type: Sequelize.STRING
+      created_at: {
+        allowNull: false,
+        type: Sequelize.DATE
       },
-      imageData: {
-        type: Sequelize.STRING
+      updated_at: {
+        allowNull: false,
+        type: Sequelize.DATE
       },
     });
   },

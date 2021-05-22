@@ -4,9 +4,7 @@ module.exports = (sequelize, DataTypes) => {
         {
             name: DataTypes.STRING,
             description: DataTypes.TEXT,
-            imageType: DataTypes.STRING,
-            imageName: DataTypes.STRING,
-            imageData: DataTypes.BLOB('long'),
+            image: DataTypes.STRING,
             createdAt: {
                 type: DataTypes.DATE,
                 field: "created_at",
