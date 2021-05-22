@@ -2,7 +2,7 @@
   "name": "diversamente-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "set NODE_ENV=production&&node app.js",
     "dev": "set NODE_ENV=development&&nodemon app.js",
