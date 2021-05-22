@@ -4,15 +4,7 @@ const {cardsService} = require("../services");
 module.exports = {
     create: async (req,res) => {
         try {
-            const {name, description} = req.body;
-            let _card = {
-                name, 
-                description,
-                imageType: req.file.mimetype,
-                imageName: req.file.originalname,
-                imageData: req.file.buffer
-            };
-            const response = await cardsService.create(_card);
+            const response = await cardsService.create(req.body);
             if(response){
                 return res.status(StatusCodes.CREATED).json(response);
             }
@@ -22,6 +14,21 @@ module.exports = {
             return res
                 .status(error.status || StatusCodes.INTERNAL_SERVER_ERROR)
                 .json(error.messages); 
+        }
+    },
+    list: async (req,res) => {
+        try {
+            const { name } = req.query;
+            const response = await cardsService.list({name});
+            if (!response || response.data.length === 0) {
+                return res.status(StatusCodes.NO_CONTENT).end();
+            }
+            return res.status(StatusCodes.OK).json(response);
+        }
+        catch(error) {
+            return res
+                .status(error.status || StatusCodes.INTERNAL_SERVER_ERROR)
+                .json(error.messages);
         }
     }
 }
