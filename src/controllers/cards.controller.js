@@ -1,5 +1,5 @@
 const { StatusCodes } = require("http-status-codes");
-const {cardsService} = require("../services");
+const { cardsService } = require("../services");
 
 module.exports = {
     create: async (req,res) => {
