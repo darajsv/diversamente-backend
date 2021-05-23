@@ -1,4 +1,4 @@
-const cardsService = require('./cards');
+const cardsService = require("./cards");
 
 module.exports = {
     cardsService
