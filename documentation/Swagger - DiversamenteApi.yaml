@@ -1,6 +1,6 @@
 swagger: '2.0'
 info:
-  description: Documentação das requisições disponiveis da diversamente-api
+  description:  Documentação das requisições disponiveis da diversamente-api https://diversamente-api.herokuapp.com/api/cards/
   version: 1.0.0
   title: DiversaMente API
   # put the contact info for your development or API team
