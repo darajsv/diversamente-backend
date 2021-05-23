@@ -9,7 +9,7 @@ module.exports.list = async (options) => {
       query.where = { name: options.name };
     }
   
-    const { count, rows } = await usersRepository.list(query);
+    const { count, rows } = await cardsRepository.list(query);
   
     return {
       metadata: {
