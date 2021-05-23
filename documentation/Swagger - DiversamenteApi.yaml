@@ -1,0 +1,92 @@
+swagger: '2.0'
+info:
+  description: Documentação das requisições disponiveis da diversamente-api
+  version: 1.0.0
+  title: DiversaMente API
+  # put the contact info for your development or API team
+  contact:
+    email: darajsv@gmail.com
+#host: https://diversamente-api.herokuapp.com
+basePath: /cards
+# tags are used for organizing operations
+tags:
+- name: Cartas
+  description: Requisições disponiveis para as cartas do jogo
+
+paths:
+  /list:
+    get:
+      tags:
+      - Cartas
+      summary: Lista todas as cartas do jogo
+      operationId: listCards
+      produces:
+      - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CardResponse'
+        500:
+          description: internal server error
+  /create:
+    post:
+      tags:
+      - Cartas
+      summary: Adiciona uma nova Carta
+      operationId: addCard
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: CardRequest
+        schema:
+          $ref: '#/definitions/CardRequest'
+      responses:
+        201:
+          description: item created
+        400:
+          description: invalid input, object invalid
+        409:
+          description: an existing item already exists
+definitions:
+  CardResponse:
+    type: object
+    properties:
+      id:
+        type: string
+        example: 2
+      name:
+        type: string
+        example: Homem Trans
+      description:
+        type: string
+        example: Homem trans, transgênero, ou transexual é um homem que foi designado ao sexo feminino quando nasceu, contudo, este se atribui ao gênero masculino. O momento em que um homem trans descobre a sua identificação como do gênero masculino varia e não há narrativa única, podendo ser desde na primeira infância até depois de adulto.
+      image:
+        type: string
+        example: gs://diversamentedb.appspot.com
+      createdAt: 
+        type: string
+        example: "2021-05-23T00:40:30.668Z"
+      updatedAt:
+        type: string
+        example: "2021-05-23T00:40:30.668Z"
+  CardRequest:
+    type: object
+    properties:
+      name:
+        type: string
+        example: Homem Trans
+      description:
+        type: string
+        example: Homem trans, transgênero, ou transexual é um homem que foi designado ao sexo feminino quando nasceu, contudo, este se atribui ao gênero masculino. O momento em que um homem trans descobre a sua identificação como do gênero masculino varia e não há narrativa única, podendo ser desde na primeira infância até depois de adulto.
+      image:
+        type: string
+        example: gs://diversamentedb.appspot.com
+     
+schemes:
+ - https
