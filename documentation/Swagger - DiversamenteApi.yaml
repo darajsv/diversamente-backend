@@ -31,6 +31,23 @@ paths:
               $ref: '#/definitions/CardResponse'
         500:
           description: internal server error
+  /list/{id}:
+    get:
+      tags:
+      - Cartas
+      summary: Busca uma carta pelo o ID
+      operationId: listById
+      produces: 
+      - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            items: 
+              $ref: '#/definitions/CardResponse'
+        500:
+          description: internal server error        
   /create:
     post:
       tags:
@@ -53,6 +70,34 @@ paths:
           description: invalid input, object invalid
         409:
           description: an existing item already exists
+  /edit/{id}:
+    put:
+      tags:
+      - Cartas
+      summary: Edita a carta pelo o ID
+      operationId: updateCard
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: CardRequest
+        schema:
+          $ref: '#/definitions/CardRequest'
+      responses:
+        200:
+          description: item updated
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CardResponse'
+        400:
+          description: invalid input, object invalid
+        404:
+          description: not found
+        500:
+          description: internal server error
 definitions:
   CardResponse:
     type: object

@@ -1,9 +1,11 @@
 const {create} = require('./create.service');
 const {list} = require('./list.service');
-const {listById} = require('./listById.service');
+const {get} = require('./get.service');
+const {update} =require('./update.service');
 
 module.exports = {
     create,
     list,
-    listById,
+    get,
+    update,
 }
