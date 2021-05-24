@@ -2,7 +2,6 @@ const { cardsRepository } = require("../../repositories");
 const {messages} = require("../../helpers");
 
 module.exports.list = async (options) => {
-    console.log(options);
     const query = {};
   
     if (options.name && options.name !== "") {

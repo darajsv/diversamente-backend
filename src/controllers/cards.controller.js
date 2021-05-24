@@ -30,5 +30,20 @@ module.exports = {
                 .status(error.status || StatusCodes.INTERNAL_SERVER_ERROR)
                 .json(error.messages);
         }
-    }
+    },
+    listById: async (req,res) => {
+        try {
+            const _id = req.params.id;
+            const response = await cardsService.listById(_id);
+            if(!response || response.data.length === 0) {
+                return res.status(StatusCodes.NO_CONTENT).end();
+            }
+            return res.status(StatusCodes.OK).json(response);
+        }
+        catch(error) {
+            return res
+                .status(error.status || StatusCodes.INTERNAL_SERVER_ERROR)
+                .json(error.messages);
+        }
+    } 
 }
