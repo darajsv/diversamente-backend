@@ -98,6 +98,21 @@ paths:
           description: not found
         500:
           description: internal server error
+  /delete/{id}:
+    delete:
+      tags:
+      - Cartas
+      summary: Exclui uma carta pelo o ID
+      operationId: deleteById
+      produces: 
+      - application/json
+      responses:
+        200:
+          description: OK
+        404:
+          description: not found
+        500:
+          description: internal server error       
 definitions:
   CardResponse:
     type: object

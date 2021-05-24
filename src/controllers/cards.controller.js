@@ -52,5 +52,16 @@ module.exports = {
                 .status(error.status || StatusCodes.INTERNAL_SERVER_ERROR)
                 .json(error.messages);
         }
-    }, 
+    },
+    delete: async (req,res) => {
+        try {
+            const response = await cardsService.deleteOne(req.params.id);   
+            return res.status(StatusCodes.OK).json(response.dataValues);
+        }
+        catch(error) {
+            return res
+                .status(error.status || StatusCodes.INTERNAL_SERVER_ERROR)
+                .json(error.messages);
+        }
+    } 
 }
