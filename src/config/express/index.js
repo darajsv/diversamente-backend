@@ -4,7 +4,7 @@ const routes = require("../../routes");
 const { port } = require("../env");
 
 const app = express();
-app.set("port", port || 3000);
+app.set("port", port || 80);
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     next();
