@@ -3,17 +3,43 @@ info:
   description:  Documentação das requisições disponiveis da diversamente-api https://diversamente-api.herokuapp.com/api/cards/
   version: 1.0.0
   title: DiversaMente API
-  # put the contact info for your development or API team
   contact:
     email: darajsv@gmail.com
-#host: https://diversamente-api.herokuapp.com
-basePath: /cards
-# tags are used for organizing operations
+basePath: /api
 tags:
 - name: Cartas
   description: Requisições disponiveis para as cartas do jogo
+- name: Auth
+  description: Autenticação para fazer algumas requisições
 
 paths:
+  /auth/login:
+    post:
+      tags: 
+      - Auth
+      summary: Faz Login para fazer requisições de editar/atualizar/excluir
+      operationId: login
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters: 
+      - in: body
+        name: CardRequest
+        schema:
+          $ref: '#/definitions/LoginRequest'
+      responses: 
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/LoginResponse'
+        400:
+          description: invalid password
+        500:
+          description: internal server error
+
   /list:
     get:
       tags:
@@ -43,12 +69,12 @@ paths:
         200:
           description: OK
           schema:
-            type: object
+            type: array
             items: 
               $ref: '#/definitions/CardResponse'
         500:
           description: internal server error        
-  /create:
+  /dashboard/cards/create:
     post:
       tags:
       - Cartas
@@ -70,7 +96,7 @@ paths:
           description: invalid input, object invalid
         409:
           description: an existing item already exists
-  /edit/{id}:
+  /dashboard/cards/edit/{id}:
     put:
       tags:
       - Cartas
@@ -98,7 +124,7 @@ paths:
           description: not found
         500:
           description: internal server error
-  /delete/{id}:
+  /dasboard/cards/delete/{id}:
     delete:
       tags:
       - Cartas
@@ -147,6 +173,24 @@ definitions:
       image:
         type: string
         example: gs://diversamentedb.appspot.com
-     
+  LoginRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          example: admin@diversamente.com
+        password: 
+          type: string
+          example: minhaSenha
+  LoginResponse:
+    type: object
+    properties: 
+      email: 
+        type: string
+        example: admin@diversamente.com
+      token: 
+        type: string
+        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJhZG1pbkBkaXZlcnNhbWVudGUuY29tIiwiaWF0IjoxNjIyMTM5NTMxfQ.aoX3m25fOrIeLK-nQojQoO4lrH91E7uPxNKAW6Uw
+
 schemes:
  - https
