@@ -43,7 +43,6 @@ module.exports = async (req, res, next) => {
 
     return next();
   } catch (error) {
-    console.error(error);
-    return res.status(error.status).json(error.message);
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(messages.internalError);
   }
 };
